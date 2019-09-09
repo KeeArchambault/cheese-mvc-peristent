@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class CategoryController {
 
     @Autowired
-    public CategoryDao categoryDao;
+    private CategoryDao categoryDao;
 
     @RequestMapping(value="")
     public String index(Model model){
