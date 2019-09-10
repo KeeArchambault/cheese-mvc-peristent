@@ -16,6 +16,7 @@ public class Menu {
     @Size(min=3, max=15)
     private String name;
 
+
     @Id
     @GeneratedValue
     private int id;
@@ -43,6 +44,10 @@ public class Menu {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }
