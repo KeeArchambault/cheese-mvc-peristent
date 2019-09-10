@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container">
+        <h1 th:text="${title}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <div class="table">
+            <table th:each="menu : ${menus}" name="menuId">
+                <td th:for="menuId"
+                    th:value="${menu.id}"
+                    th:text="${menu.name">
+                    <a href="menu/view/${menu.id}"/>
+                </td>
+<!--Not sure about above anchor element-->
+            </table>
+
+            <a href="/menu/add"/>
+
+
+        </div>
+
+    </body>
+</html>
