@@ -22,7 +22,7 @@ public class Menu {
     private int id;
 
     @ManyToMany
-    List<Cheese> cheeses;
+    private List<Cheese> cheeses;
 
     public Menu(){
     }

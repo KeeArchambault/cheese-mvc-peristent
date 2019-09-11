@@ -7,16 +7,15 @@
         <nav th:replace="fragments :: navigation"></nav>
 
         <div class="table">
-            <table th:each="menu : ${menus}" name="menuId">
-                <td th:for="menuId"
-                    th:value="${menu.id}"
-                    th:text="${menu.name}">
+            <table th:each="cheese : ${menu.cheeses}" name="menuCheese">
+                <td th:for="menuCheese"
+                    th:value="${cheese.id}"
+                    th:text="${cheese.name}">
                 </td>
-<!--Not sure about above anchor element-->
+                <!--Not sure about above anchor element-->
             </table>
 
-            <a href="/menu/add">Add menu</a>
-
+            <p><a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a></p>
 
         </div>
 
