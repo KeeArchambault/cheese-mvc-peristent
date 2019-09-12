@@ -94,7 +94,7 @@ public class MenuController {
 
             menuDao.save(menu);
 
-            return "redirect:menu/view/" + menuId;
+            return "redirect:menu/view/" + menu.getId();
         }
 
     }
