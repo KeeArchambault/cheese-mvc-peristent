@@ -29,7 +29,6 @@ public class MenuController {
     public String index(Model model){
 
         model.addAttribute("menus", menuDao.findAll());
-
         return "menu/index";
     }
 
@@ -48,15 +47,16 @@ public class MenuController {
 
         }else{
             menuDao.save(menu);
+            int menuId = menu.getId();
 
-            return "redirect:view/" + menu.getId();
+            return "redirect:view/" + menuId;
         }
     }
 
-    @RequestMapping(value = "view/{id}", method=RequestMethod.GET)
-    public String viewMenu(Model model, @PathVariable int id){
-        model.addAttribute("menu", menuDao.findOne(id));
-        model.addAttribute("title", menuDao.findOne(id).getName());
+    @RequestMapping(value = "view/{menuId}", method=RequestMethod.GET)
+    public String viewMenu(Model model, @PathVariable int menuId){
+        model.addAttribute("menu", menuDao.findOne(menuId));
+        model.addAttribute("title", menuDao.findOne(menuId).getName());
 
         return "view";
     }
@@ -88,11 +88,11 @@ public class MenuController {
             Menu menu = menuDao.findOne(menuId);
             List<Cheese> cheeses = menu.getCheeses();
 
-            Menu newMenu = menu.addItem(cheese);
+            menu.addItem(cheese);
 
-            menuDao.save(newMenu);
+            menuDao.save(menu);
 
-            return "redirect:view/" + newMenu.getId();
+            return "redirect:view/" + menuId;
         }
 
     }

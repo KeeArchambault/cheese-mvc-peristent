@@ -8,11 +8,10 @@
 
         <div class="table">
             <table th:each="menu : ${menus}" name="menuId">
-                <td th:for="menuId"
+                <a th:href="'/menu/view/'+ ${menu.id}" th:for="menuId"
                     th:value="${menu.id}"
                     th:text="${menu.name}">
-                </td>
-<!--Not sure about above anchor element-->
+                </a>
             </table>
 
             <a href="/menu/add">Add menu</a>
