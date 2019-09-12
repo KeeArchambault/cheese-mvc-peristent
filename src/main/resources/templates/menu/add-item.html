@@ -10,12 +10,12 @@
             <div class="form-group">
                 <label th:for="cheeseId">Cheese</label>
                 <select name="cheeseId">
-                    <option th:each="cheese : ${form.cheeses}"
+                    <option th:each="cheese : ${cheeses}"
                             th:text="${cheese.name}"
                             th:value="${cheese.id}"></option>
                 </select>
-                <input type="hidden" name="menuId" th:value="*{menu.id}" />
-                    <span th:errors="&{cheese.name}" class="error"></span>
+                <input type="hidden" name="menuId" th:value="${menu.id}" />
+                <span th:errors="${form}" class="error"></span>
             </div>
 
             <input type="submit" value="Add Cheese" />

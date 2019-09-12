@@ -7,8 +7,8 @@
         <nav th:replace="fragments :: navigation"></nav>
 
         <div class="table">
-            <table th:each="menu : ${menus}" name="menuId">
-                <a th:href="'/menu/view/'+ ${menu.id}" th:for="menuId"
+            <table th:each="menu : ${menus}" name="id">
+                <a th:href="'menu/view/'+ ${menu.id}" th:for="id"
                     th:value="${menu.id}"
                     th:text="${menu.name}">
                 </a>

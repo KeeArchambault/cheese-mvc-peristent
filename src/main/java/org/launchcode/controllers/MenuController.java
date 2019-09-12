@@ -33,13 +33,13 @@ public class MenuController {
     }
 
     @RequestMapping(value="add", method = RequestMethod.GET)
-    public String add(Model model, Menu menu){
+    public String addMenu(Model model, Menu menu){
         model.addAttribute("menu", menu);
         return "menu/add";
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute @Valid Menu menu, Errors errors){
+    public String addMenu(Model model, @ModelAttribute @Valid Menu menu, Errors errors){
 
         if(errors.hasErrors()) {
 
@@ -47,18 +47,18 @@ public class MenuController {
 
         }else{
             menuDao.save(menu);
-            int menuId = menu.getId();
+            int id = menu.getId();
 
-            return "redirect:view/" + menuId;
+            return "redirect:menu/view/" + id;
         }
     }
 
-    @RequestMapping(value = "view/{menuId}", method=RequestMethod.GET)
-    public String viewMenu(Model model, @PathVariable int menuId){
-        model.addAttribute("menu", menuDao.findOne(menuId));
-        model.addAttribute("title", menuDao.findOne(menuId).getName());
+    @RequestMapping(value = "view/{id}", method=RequestMethod.GET)
+    public String viewMenu(Model model, @PathVariable int id){
+        model.addAttribute("menu", menuDao.findOne(id));
+        model.addAttribute("title", menuDao.findOne(id).getName());
 
-        return "view";
+        return "menu/view";
     }
 
     @RequestMapping(value="add-item/{id}", method=RequestMethod.GET)
@@ -71,9 +71,11 @@ public class MenuController {
 
 
         model.addAttribute("form", form);
-        model.addAttribute("title", "Add Item to Menu:" + menuName);
+        model.addAttribute("title", "Add Item to Menu: " + menuName);
+        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("menu", menu);
 
-        return "add-item";
+        return "menu/add-item";
     }
 
     @RequestMapping(value="add-item", method=RequestMethod.POST)
@@ -81,7 +83,7 @@ public class MenuController {
 
         if (errors.hasErrors()){
 
-            return "add-item";
+            return "menu/add-item";
         }else{
 
             Cheese cheese = cheeseDao.findOne(cheeseId);
@@ -92,7 +94,7 @@ public class MenuController {
 
             menuDao.save(menu);
 
-            return "redirect:view/" + menuId;
+            return "redirect:menu/view/" + menuId;
         }
 
     }
