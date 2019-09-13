@@ -29,6 +29,7 @@ public class MenuController {
     public String index(Model model){
 
         model.addAttribute("menus", menuDao.findAll());
+        model.addAttribute("title", "Menus");
         return "menu/index";
     }
 
@@ -49,7 +50,7 @@ public class MenuController {
             menuDao.save(menu);
             int id = menu.getId();
 
-            return "redirect:menu/view/" + id;
+            return "redirect:view/" + id;
         }
     }
 
@@ -97,7 +98,7 @@ public class MenuController {
 
             menuDao.save(menu);
 
-            return "menu/view";
+            return "redirect:../view/" + menu.getId();
         }
 
     }
