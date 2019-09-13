@@ -75,7 +75,7 @@ public class MenuController {
         model.addAttribute("cheeses", cheeses);
         model.addAttribute("menu", menu);
 
-        return "menu/add-item";
+        return "redirect:" + id;
     }
 
     @RequestMapping(value="add-item/{id}", method=RequestMethod.POST)
@@ -94,7 +94,7 @@ public class MenuController {
 
             menuDao.save(menu);
 
-            return "redirect:menu/view/" + menu.getId();
+            return "redirect:/view/" + menu.getId();
         }
 
     }
