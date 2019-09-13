@@ -7,7 +7,7 @@
         <nav th:replace="fragments :: navigation"></nav>
 
         <div class="list" th:object="${menu}">
-            <ul th:each="cheese : ${cheeses}" name="cheese">
+            <ul th:each="cheese : *{cheeses}" name="cheese">
                 <li th:for="cheese"
                     th:value="${cheese.id}"
                     th:text="${cheese.name}">
