@@ -75,7 +75,7 @@ public class MenuController {
         model.addAttribute("cheeses", cheeses);
         model.addAttribute("menu", menu);
 
-        return "redirect:" + id;
+        return "menu/add-item";
     }
 
     @RequestMapping(value="add-item/{id}", method=RequestMethod.POST)
@@ -89,12 +89,15 @@ public class MenuController {
             Cheese cheese = cheeseDao.findOne(cheeseId);
             Menu menu = menuDao.findOne(id);
             List<Cheese> cheeses = menu.getCheeses();
+            model.addAttribute("menu", menuDao.findOne(id));
+            model.addAttribute("title", menuDao.findOne(id).getName());
+
 
             menu.addItem(cheese);
 
             menuDao.save(menu);
 
-            return "redirect:/view/" + menu.getId();
+            return "menu/view";
         }
 
     }
